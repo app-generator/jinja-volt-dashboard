@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% load static %}
+
 
 {% block content %}
 
@@ -170,7 +170,7 @@
                                   Remember me
                                 </label>
                               </div>
-                              <div><a href="{% url 'password_reset' %}" class="small text-right">Lost password?</a></div>
+                              <div><a href="{{url_for('accounts_reset_password')}}" class="small text-right">Lost password?</a></div>
                             </div>
                           </div>
                           <div class="d-grid">
@@ -213,7 +213,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-4">
                           <span class="fw-normal">
                             Not registered?
-                            <a href="{% url 'register' %}" class="fw-bold">Create account</a>
+                            <a href="{{url_for('accounts_sign_up')}}" class="fw-bold">Create account</a>
                           </span>
                         </div>
                       </div>
@@ -341,7 +341,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-4">
                           <span class="fw-normal">
                             Already have an account?
-                            <a href="{% url 'login' %}" class="fw-bold">Login here</a>
+                            <a href="{{url_for('accounts_sign_in')}}" class="fw-bold">Login here</a>
                           </span>
                         </div>
                       </div>

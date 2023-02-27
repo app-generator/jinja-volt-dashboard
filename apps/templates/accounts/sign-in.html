@@ -1,5 +1,5 @@
 {% extends 'layouts/base-auth.html' %}
-{% load static %}
+
 
 {% block content %}
 
@@ -7,7 +7,7 @@
 <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
   <div class="container">
     <p class="text-center">
-      <a href="{% url 'dashboard' %}" class="d-flex align-items-center justify-content-center">
+      <a href="{{url_for('pages_dashboard')}}" class="d-flex align-items-center justify-content-center">
         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
             d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
@@ -17,41 +17,33 @@
       </a>
     </p>
     <div class="row justify-content-center form-bg-image"
-      data-background-lg="{% static 'assets/img/illustrations/signin.svg' %}">
+      data-background-lg="{{ url_for('static' , filename = 'assets/img/illustrations/signin.svg' )}}">
       <div class="col-12 d-flex align-items-center justify-content-center">
         <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
           <div class="text-center text-md-center mb-4 mt-md-0">
             <h1 class="mb-0 h3">Sign in to our platform</h1>
           </div>
-          <form method="post" class="mt-4">
-            {% csrf_token %}
-
-            {% if form.non_field_errors %}
-              {% for error in form.non_field_errors %}
-                <div class="text-danger mb-3">{{ error }}</div>
-              {% endfor %}
-            {% endif %}
-
+          <form action="#" class="mt-4">
             <!-- Form -->
             <div class="form-group mb-4">
-              <label for="email">{{ form.username.label }}</label>
+              <label for="email">Your Email</label>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
                   <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                      clip-rule="evenodd"></path>
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                   </svg>
                 </span>
-                {{ form.username }}
+                <input type="email" class="form-control" placeholder="example@company.com" id="email" autofocus
+                  required>
               </div>
             </div>
             <!-- End of Form -->
             <div class="form-group">
               <!-- Form -->
               <div class="form-group mb-4">
-                <label for="password">{{ form.password.label }}</label>
+                <label for="password">Your Password</label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon2">
                     <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
@@ -61,7 +53,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                   </span>
-                  {{ form.password }}
+                  <input type="password" placeholder="Password" class="form-control" id="password" required>
                 </div>
               </div>
               <!-- End of Form -->
@@ -72,14 +64,13 @@
                     Remember me
                   </label>
                 </div>
-                <div><a href="{% url 'password_reset' %}" class="small text-right">Lost password?</a></div>
+                <div><a href="{{url_for('accounts_forgot_password')}}" class="small text-right">Lost password?</a></div>
               </div>
             </div>
             <div class="d-grid">
               <button type="submit" class="btn btn-gray-800">Sign in</button>
             </div>
           </form>
-          <!--
           <div class="mt-3 mb-4 text-center">
             <span class="fw-normal">or login with</span>
           </div>
@@ -111,11 +102,11 @@
                 </path>
               </svg>
             </a>
-          </div>-->
+          </div>
           <div class="d-flex justify-content-center align-items-center mt-4">
             <span class="fw-normal">
               Not registered?
-              <a href="{% url 'register' %}" class="fw-bold">Create account</a>
+              <a href="{{url_for('accounts_sign_up')}}" class="fw-bold">Create account</a>
             </span>
           </div>
         </div>
